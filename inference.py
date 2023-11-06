@@ -82,7 +82,7 @@ def main(args):
     #coeff2video
     data = get_facerender_data(coeff_path, crop_pic_path, first_coeff_path, audio_path, 
                                 batch_size, input_yaw_list, input_pitch_list, input_roll_list,
-                                expression_scale=args.expression_scale, still_mode=args.still, preprocess=args.preprocess, size=args.size)
+                                expression_scale=args.expression_scale, head_motion_scale=args.head_motion_scale, still_mode=args.still, preprocess=args.preprocess)
     
     result = animate_from_coeff.generate(data, save_dir, pic_path, crop_info, \
                                 enhancer=args.enhancer, background_enhancer=args.background_enhancer, preprocess=args.preprocess, img_size=args.size)
@@ -106,7 +106,8 @@ if __name__ == '__main__':
     parser.add_argument("--pose_style", type=int, default=0,  help="input pose style from [0, 46)")
     parser.add_argument("--batch_size", type=int, default=2,  help="the batch size of facerender")
     parser.add_argument("--size", type=int, default=256,  help="the image size of the facerender")
-    parser.add_argument("--expression_scale", type=float, default=1.,  help="the batch size of facerender")
+    parser.add_argument("--expression_scale", type=float, default=1.,  help="expression scale")
+    parser.add_argument("--head_motion_scale", type=float, default=1.,  help="head motion scale")
     parser.add_argument('--input_yaw', nargs='+', type=int, default=None, help="the input yaw degree of the user ")
     parser.add_argument('--input_pitch', nargs='+', type=int, default=None, help="the input pitch degree of the user")
     parser.add_argument('--input_roll', nargs='+', type=int, default=None, help="the input roll degree of the user")
